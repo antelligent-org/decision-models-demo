@@ -1,0 +1,22 @@
+{
+  "_about": "The messages each view of the page uses. serve.py reads this at start; edit it and restart the service.",
+  "task": {
+    "text": "I still have not received my new card, I ordered over a week ago.",
+    "label": "card_arrival"
+  },
+  "live_seed": 2611,
+  "live_count": 20,
+  "out_of_set": [
+    "Can I get a home loan to buy a flat in Bengaluru?",
+    "What's the IFSC code for my account?",
+    "I'd like to speak to a human, please.",
+    "Do you have a branch in Koramangala?",
+    "Can I get a cheque book?"
+  ],
+  "retrain": {
+    "id": "test-01953",
+    "text": "I was taking out funds and was unable to regain my card.",
+    "label": "card_swallowed"
+  },
+  "repo_url": "github.com/antelligent-org/decision-models-demo"
+}

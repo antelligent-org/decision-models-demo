@@ -1,0 +1,11 @@
+# torch and transformers for ModernBERT; anthropic for the LLM on Claude. The LLM on OpenAI, Fern,
+# the report and the service need only the standard library.
+# Versions as tested on 2026-11-23 (macOS 27, Apple M4, Python 3.14).
+torch==2.15.0
+transformers==5.24.0
+safetensors
+huggingface_hub
+# The LLM on Claude (OpenAI needs nothing beyond the standard library)
+anthropic==2.12.0
+# prepare_data.py only
+pyarrow

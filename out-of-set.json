@@ -1,0 +1,502 @@
+{
+  "threshold": 0.9,
+  "messages": [
+    {
+      "text": "Can I get a home loan to buy a flat in Bengaluru?",
+      "modernbert_label": "failed_transfer",
+      "modernbert_confidence": 0.16713380813598633,
+      "modernbert_top": [
+        [
+          "failed_transfer",
+          0.16713380813598633
+        ],
+        [
+          "wrong_exchange_rate_for_cash_withdrawal",
+          0.13457566499710083
+        ],
+        [
+          "top_up_by_cash_or_cheque",
+          0.11993236839771271
+        ]
+      ],
+      "routed": true,
+      "llm_label": "none_of_these",
+      "llm_reply": "Sorry, we don't offer home loans, so we can't help with buying a flat in Bengaluru. Our digital bank covers cards, the app, top-ups, transfers and currency exchange. For mortgage options, please contact a bank or lending institution that offers home loans in India.",
+      "llm_ms": 3999.8362499754876
+    },
+    {
+      "text": "What interest rate do you pay on savings?",
+      "modernbert_label": "top_up_by_card_charge",
+      "modernbert_confidence": 0.1951318085193634,
+      "modernbert_top": [
+        [
+          "top_up_by_card_charge",
+          0.1951318085193634
+        ],
+        [
+          "exchange_rate",
+          0.16172845661640167
+        ],
+        [
+          "exchange_charge",
+          0.12288888543844223
+        ]
+      ],
+      "routed": true,
+      "llm_label": "none_of_these",
+      "llm_reply": "I'm sorry, I don't have information about interest rates on savings. For current rates and details on any savings products, please check the app or our website, or contact our support team directly.",
+      "llm_ms": 2326.389916939661
+    },
+    {
+      "text": "Do you offer business accounts for my startup?",
+      "modernbert_label": "age_limit",
+      "modernbert_confidence": 0.3248431086540222,
+      "modernbert_top": [
+        [
+          "age_limit",
+          0.3248431086540222
+        ],
+        [
+          "country_support",
+          0.31730085611343384
+        ],
+        [
+          "top_up_by_cash_or_cheque",
+          0.08562909811735153
+        ]
+      ],
+      "routed": true,
+      "llm_label": "none_of_these",
+      "llm_reply": "I can't confirm whether we offer business accounts for startups. I can help with our personal accounts, including cards, the app, top-ups, transfers and currency exchange. For business account options, please check our website or contact our team directly.",
+      "llm_ms": 2216.1319999722764
+    },
+    {
+      "text": "Can I add my wife as a joint account holder?",
+      "modernbert_label": "age_limit",
+      "modernbert_confidence": 0.45881062746047974,
+      "modernbert_top": [
+        [
+          "age_limit",
+          0.45881062746047974
+        ],
+        [
+          "receiving_money",
+          0.16061431169509888
+        ],
+        [
+          "getting_spare_card",
+          0.1558079719543457
+        ]
+      ],
+      "routed": true,
+      "llm_label": "none_of_these",
+      "llm_reply": "Thanks for your question. We don't currently offer joint accounts, so your wife would not be able to be added as a joint account holder. She can open her own account in the app, and you can use the app's transfer features to send money between your accounts. If you need more detail, please contact our support team through the app.",
+      "llm_ms": 1684.790041996166
+    },
+    {
+      "text": "Do you have an overdraft facility?",
+      "modernbert_label": "why_verify_identity",
+      "modernbert_confidence": 0.35378298163414,
+      "modernbert_top": [
+        [
+          "why_verify_identity",
+          0.35378298163414
+        ],
+        [
+          "automatic_top_up",
+          0.34158092737197876
+        ],
+        [
+          "top_up_by_cash_or_cheque",
+          0.0762094110250473
+        ]
+      ],
+      "routed": true,
+      "llm_label": "none_of_these",
+      "llm_reply": "Thanks for your question. We don't offer an overdraft facility. You can only spend the money you have loaded into your account. To add funds, you can top up by card or bank transfer from the app. If you need more help, our support team is happy to assist.",
+      "llm_ms": 1853.9748329203576
+    },
+    {
+      "text": "Can I buy travel insurance through the app?",
+      "modernbert_label": "top_up_by_cash_or_cheque",
+      "modernbert_confidence": 0.14369025826454163,
+      "modernbert_top": [
+        [
+          "top_up_by_cash_or_cheque",
+          0.14369025826454163
+        ],
+        [
+          "verify_my_identity",
+          0.12310288846492767
+        ],
+        [
+          "exchange_via_app",
+          0.0659957155585289
+        ]
+      ],
+      "routed": true,
+      "llm_label": "none_of_these",
+      "llm_reply": "Sorry, we don't offer travel insurance through the app. For help with your card, top-ups, transfers or currency exchange, just ask and we'll be happy to help.",
+      "llm_ms": 1755.703332950361
+    },
+    {
+      "text": "How do I invest in stocks with my account?",
+      "modernbert_label": "transfer_into_account",
+      "modernbert_confidence": 0.4618459641933441,
+      "modernbert_top": [
+        [
+          "transfer_into_account",
+          0.4618459641933441
+        ],
+        [
+          "top_up_by_cash_or_cheque",
+          0.28363990783691406
+        ],
+        [
+          "atm_support",
+          0.04741615056991577
+        ]
+      ],
+      "routed": true,
+      "llm_label": "none_of_these",
+      "llm_reply": "Sorry, I can't help with investing in stocks through your account. I can help with cards, top-ups, transfers, currency exchange, and the app. If you have a question about one of those, just let me know.",
+      "llm_ms": 1840.8826669910923
+    },
+    {
+      "text": "Can you send me a bank statement for my visa application?",
+      "modernbert_label": "balance_not_updated_after_bank_transfer",
+      "modernbert_confidence": 0.37245967984199524,
+      "modernbert_top": [
+        [
+          "balance_not_updated_after_bank_transfer",
+          0.37245967984199524
+        ],
+        [
+          "visa_or_mastercard",
+          0.12475991249084473
+        ],
+        [
+          "verify_source_of_funds",
+          0.08061119168996811
+        ]
+      ],
+      "routed": true,
+      "llm_label": "none_of_these",
+      "llm_reply": "I'm sorry, I can't help with bank statements or documents for visa applications here. You may be able to download statements from your account in the app. For an official statement or letter, please contact our support team directly, and they can tell you what's available.",
+      "llm_ms": 2141.527707921341
+    },
+    {
+      "text": "Is my money protected if the bank goes bust?",
+      "modernbert_label": "transfer_into_account",
+      "modernbert_confidence": 0.5481238961219788,
+      "modernbert_top": [
+        [
+          "transfer_into_account",
+          0.5481238961219788
+        ],
+        [
+          "card_swallowed",
+          0.11542048305273056
+        ],
+        [
+          "top_up_reverted",
+          0.06835190951824188
+        ]
+      ],
+      "routed": true,
+      "llm_label": "none_of_these",
+      "llm_reply": "Thanks for your question. I'm not able to confirm the details of how your money is protected if the bank fails from here. Please check the deposit protection information in the app or in your account terms, or contact our support team, who can give you an accurate answer about your account.",
+      "llm_ms": 1529.2159999953583
+    },
+    {
+      "text": "Can I pay my credit card bill with this account?",
+      "modernbert_label": "topping_up_by_card",
+      "modernbert_confidence": 0.4620208740234375,
+      "modernbert_top": [
+        [
+          "topping_up_by_card",
+          0.4620208740234375
+        ],
+        [
+          "supported_cards_and_currencies",
+          0.1909867376089096
+        ],
+        [
+          "card_acceptance",
+          0.08900442719459534
+        ]
+      ],
+      "routed": true,
+      "llm_label": "none_of_these",
+      "llm_reply": "Thanks for your message. This account doesn't cover credit card bills, since we offer a card, app, top-ups, transfers and currency exchange rather than credit cards. To pay a credit card bill, please use the payment options from your credit card provider. If you'd like to know whether you can send money out of this account to another account, please contact our support team.",
+      "llm_ms": 2390.439459006302
+    },
+    {
+      "text": "What are your customer service hours?",
+      "modernbert_label": "verify_my_identity",
+      "modernbert_confidence": 0.2873227894306183,
+      "modernbert_top": [
+        [
+          "verify_my_identity",
+          0.2873227894306183
+        ],
+        [
+          "disposable_card_limits",
+          0.151704341173172
+        ],
+        [
+          "card_payment_fee_charged",
+          0.09999766200780869
+        ]
+      ],
+      "routed": true,
+      "llm_label": "none_of_these",
+      "llm_reply": "I'm sorry, I don't have our customer service opening hours. Please check the app or our website for the latest hours and contact options.",
+      "llm_ms": 2116.1921250168234
+    },
+    {
+      "text": "Can I get a cheque book?",
+      "modernbert_label": "top_up_by_cash_or_cheque",
+      "modernbert_confidence": 0.9836758971214294,
+      "modernbert_top": [
+        [
+          "top_up_by_cash_or_cheque",
+          0.9836758971214294
+        ],
+        [
+          "balance_not_updated_after_cheque_or_cash_deposit",
+          0.01283825933933258
+        ],
+        [
+          "visa_or_mastercard",
+          0.001939344103448093
+        ]
+      ],
+      "routed": false
+    },
+    {
+      "text": "Do you offer student loans?",
+      "modernbert_label": "top_up_by_bank_transfer_charge",
+      "modernbert_confidence": 0.4391458034515381,
+      "modernbert_top": [
+        [
+          "top_up_by_bank_transfer_charge",
+          0.4391458034515381
+        ],
+        [
+          "country_support",
+          0.24021989107131958
+        ],
+        [
+          "supported_cards_and_currencies",
+          0.06811853498220444
+        ]
+      ],
+      "routed": true,
+      "llm_label": "none_of_these",
+      "llm_reply": "Thanks for your question. Student loans aren't something we offer. We're a digital bank that provides a card, an app, top-ups, transfers and currency exchange. For student loan options, please check with your university or a lender that specialises in education finance. If you have a question about your account or card, I'm happy to help with that.",
+      "llm_ms": 1929.65624993667
+    },
+    {
+      "text": "Can I set a savings goal for my holiday?",
+      "modernbert_label": "top_up_by_cash_or_cheque",
+      "modernbert_confidence": 0.11045101284980774,
+      "modernbert_top": [
+        [
+          "top_up_by_cash_or_cheque",
+          0.11045101284980774
+        ],
+        [
+          "direct_debit_payment_not_recognised",
+          0.1088939979672432
+        ],
+        [
+          "verify_source_of_funds",
+          0.08799995481967926
+        ]
+      ],
+      "routed": true,
+      "llm_label": "none_of_these",
+      "llm_reply": "Thanks for your message. Unfortunately, I can't help with setting up savings goals here, but our support team can tell you whether this feature is available on your account. You can also check the app's menu for any savings or goals options.",
+      "llm_ms": 1751.176291028969
+    },
+    {
+      "text": "What's the IFSC code for my account?",
+      "modernbert_label": "passcode_forgotten",
+      "modernbert_confidence": 0.3708255887031555,
+      "modernbert_top": [
+        [
+          "passcode_forgotten",
+          0.3708255887031555
+        ],
+        [
+          "verify_top_up",
+          0.22570770978927612
+        ],
+        [
+          "card_not_working",
+          0.07544650137424469
+        ]
+      ],
+      "routed": true,
+      "llm_label": "none_of_these",
+      "llm_reply": "I'm sorry, I can't look up account identifiers such as an IFSC code in this chat. Please check the app's account details screen, or contact our support team through the app, and they can confirm the right code for your account.",
+      "llm_ms": 1690.1316660223529
+    },
+    {
+      "text": "Can I split a restaurant bill with friends in the app?",
+      "modernbert_label": "card_not_working",
+      "modernbert_confidence": 0.15796388685703278,
+      "modernbert_top": [
+        [
+          "card_not_working",
+          0.15796388685703278
+        ],
+        [
+          "card_linking",
+          0.14218363165855408
+        ],
+        [
+          "atm_support",
+          0.09286122024059296
+        ]
+      ],
+      "routed": true,
+      "llm_label": "none_of_these",
+      "llm_reply": "I'm not able to confirm whether the app has a bill-splitting feature. You can make transfers from the app, and our support team can tell you what's available for sharing costs with friends.",
+      "llm_ms": 2714.9717080174014
+    },
+    {
+      "text": "I'd like to speak to a human, please.",
+      "modernbert_label": "age_limit",
+      "modernbert_confidence": 0.11604540050029755,
+      "modernbert_top": [
+        [
+          "age_limit",
+          0.11604540050029755
+        ],
+        [
+          "top_up_by_bank_transfer_charge",
+          0.10153050720691681
+        ],
+        [
+          "get_physical_card",
+          0.07357718050479889
+        ]
+      ],
+      "routed": true,
+      "llm_label": "none_of_these",
+      "llm_reply": "I'm sorry, I can't transfer you to a human agent from this chat. You can reach our support team through the help section of the app, or describe your question here and I'll do my best to help you with it.",
+      "llm_ms": 1210.4893749346957
+    },
+    {
+      "text": "Do you have a branch in Koramangala?",
+      "modernbert_label": "country_support",
+      "modernbert_confidence": 0.19531497359275818,
+      "modernbert_top": [
+        [
+          "country_support",
+          0.19531497359275818
+        ],
+        [
+          "age_limit",
+          0.16616962850093842
+        ],
+        [
+          "fiat_currency_support",
+          0.09655831754207611
+        ]
+      ],
+      "routed": true,
+      "llm_label": "none_of_these",
+      "llm_reply": "We're a digital bank, so we don't have physical branches, including one in Koramangala. You can manage your account, cards, top-ups, transfers and currency exchange entirely through our app. If you need more help, just tell me what you're looking for.",
+      "llm_ms": 1628.104000003077
+    },
+    {
+      "text": "Can I get a loan against my salary?",
+      "modernbert_label": "receiving_money",
+      "modernbert_confidence": 0.9995431900024414,
+      "modernbert_top": [
+        [
+          "receiving_money",
+          0.9995431900024414
+        ],
+        [
+          "transfer_timing",
+          0.0002563052694313228
+        ],
+        [
+          "order_physical_card",
+          2.028565722866915e-05
+        ]
+      ],
+      "routed": false
+    },
+    {
+      "text": "How do I open a fixed deposit?",
+      "modernbert_label": "top_up_by_cash_or_cheque",
+      "modernbert_confidence": 0.600719690322876,
+      "modernbert_top": [
+        [
+          "top_up_by_cash_or_cheque",
+          0.600719690322876
+        ],
+        [
+          "direct_debit_payment_not_recognised",
+          0.1003015786409378
+        ],
+        [
+          "fiat_currency_support",
+          0.06899799406528473
+        ]
+      ],
+      "routed": true,
+      "llm_label": "none_of_these",
+      "llm_reply": "I'm sorry, I can't help with fixed deposits here. I can assist with your card, the app, top-ups, transfers and currency exchange. For fixed deposit questions, please check the app or our website for current product information, or contact our support team.",
+      "llm_ms": 1985.2907500462607
+    }
+  ],
+  "routed": 18,
+  "modernbert_confident_and_wrong": [
+    {
+      "text": "Can I get a cheque book?",
+      "modernbert_label": "top_up_by_cash_or_cheque",
+      "modernbert_confidence": 0.9836758971214294,
+      "modernbert_top": [
+        [
+          "top_up_by_cash_or_cheque",
+          0.9836758971214294
+        ],
+        [
+          "balance_not_updated_after_cheque_or_cash_deposit",
+          0.01283825933933258
+        ],
+        [
+          "visa_or_mastercard",
+          0.001939344103448093
+        ]
+      ],
+      "routed": false
+    },
+    {
+      "text": "Can I get a loan against my salary?",
+      "modernbert_label": "receiving_money",
+      "modernbert_confidence": 0.9995431900024414,
+      "modernbert_top": [
+        [
+          "receiving_money",
+          0.9995431900024414
+        ],
+        [
+          "transfer_timing",
+          0.0002563052694313228
+        ],
+        [
+          "order_physical_card",
+          2.028565722866915e-05
+        ]
+      ],
+      "routed": false
+    }
+  ]
+}

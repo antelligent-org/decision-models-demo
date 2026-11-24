@@ -1,0 +1,180 @@
+{
+  "run": "2026-11-23T1418Z",
+  "started_utc": "2026-11-23T14:18:43Z",
+  "started_local": "2026-11-23 19:48 IST",
+  "dataset": {
+    "name": "Banking77",
+    "hf_id": "PolyAI/banking77",
+    "revision": "1846984189f2bc0ac51c6fc3a600fa9e1714e0c6",
+    "license": "CC BY 4.0",
+    "attribution": "Banking77 by PolyAI (Casanueva et al., 2020), CC BY 4.0",
+    "url": "https://huggingface.co/datasets/PolyAI/banking77"
+  },
+  "test_messages": 3080,
+  "train_messages": 10003,
+  "models": {
+    "llm": {
+      "summary": {
+        "n": 3080,
+        "right": 2649,
+        "accuracy": 0.8600649350649351,
+        "errors": 0,
+        "missing": 0,
+        "not_an_intent": 0,
+        "p50_ms": 1108.2500830525532,
+        "p95_ms": 2125.0904579646885,
+        "mean_ms": 1227.0776086748056,
+        "cost_per_10k_usd": 0.8262422077922078,
+        "tokens_per_call": {
+          "input": 22.982792207792208,
+          "cache_write": 0.0,
+          "cache_read": 3368.0,
+          "output": 93.29188311688311,
+          "reasoning": 0.0,
+          "prompt": 3390.982792207792
+        },
+        "cached_share": 0.9932223801723191,
+        "cost_formula": "per call = (uncached input tokens x $0.10 + cache writes x $0.125 + cache reads x $0.01 + output x $0.50) / 1M, from the API's own usage fields; summed over the run, divided by calls, x 10,000",
+        "served_model": [
+          "claude-haiku-5-5"
+        ],
+        "has_confidence": false
+      },
+      "meta": {
+        "model": "llm",
+        "config": {
+          "provider": "anthropic",
+          "model": "claude-haiku-5-5",
+          "thinking": "adaptive",
+          "effort": "high",
+          "descriptions": true
+        },
+        "prompt_version": "v1",
+        "prices": {
+          "provider": "anthropic",
+          "input": 0.1,
+          "cache_write": 0.125,
+          "cache_read": 0.01,
+          "output": 0.5
+        },
+        "prices_as_of": "2026-11-23",
+        "prices_url": "https://platform.claude.com/docs/en/about-claude/pricing",
+        "system_prompt": "You route customer support messages for a digital bank with a card, an app, top-ups, transfers and currency exchange.\nRead the customer's message and choose the one intent below that best matches it.\n\nIntents:\n- activate_my_card: Activating a new card, or a card that will not activate.\n- age_limit: How old you must be to open or use an account; accounts for children and teens.\n- apple_pay_or_google_pay: Using Apple Pay or Google Pay, including topping up with them.\n- atm_support: Which ATMs accept the card and where cash can be withdrawn.\n- automatic_top_up: Setting up or using automatic top-ups when the balance runs low.\n- balance_not_updated_after_bank_transfer: Money sent in by bank transfer has not appeared in the balance.\n- balance_not_updated_after_cheque_or_cash_deposit: A cheque or cash deposit has not appeared in the balance.\n- beneficiary_not_allowed: A beneficiary or payee cannot be added, or a transfer to one is not allowed.\n- cancel_transfer: Cancelling or undoing a transfer that was just made, often to the wrong account.\n- card_about_to_expire: The card expires soon; how to get a replacement.\n- card_acceptance: Where the card can be used and which merchants or places accept it.\n- card_arrival: A card that was ordered has not arrived, or tracking its delivery.\n- card_delivery_estimate: How long card delivery takes, or getting a card delivered faster.\n- card_linking: Linking or re-adding a card to the app or account, such as a card found after it was reported lost.\n- card_not_working: The physical card has stopped working in general.\n- card_payment_fee_charged: A fee was charged on a card payment.\n- card_payment_not_recognised: A card payment the customer does not recognise.\n- card_payment_wrong_exchange_rate: A card payment in a foreign currency used the wrong exchange rate.\n- card_swallowed: An ATM kept the card and did not give it back.\n- cash_withdrawal_charge: A fee was charged for a cash withdrawal, or what withdrawals cost.\n- cash_withdrawal_not_recognised: A cash withdrawal the customer did not make or does not recognise.\n- change_pin: Changing the card's PIN.\n- compromised_card: Someone else may have the card or its details; fraud on the card.\n- contactless_not_working: Contactless payments do not work.\n- country_support: Which countries the service operates in or supports.\n- declined_card_payment: A card payment in a shop or online was declined.\n- declined_cash_withdrawal: An ATM declined a cash withdrawal.\n- declined_transfer: A transfer was declined.\n- direct_debit_payment_not_recognised: A direct debit the customer does not recognise.\n- disposable_card_limits: Limits on disposable virtual cards: how many, and how many uses each.\n- edit_personal_details: Changing name, address or other personal details.\n- exchange_charge: What exchanging currency costs, or a fee charged for an exchange.\n- exchange_rate: What exchange rates are used and how they are set.\n- exchange_via_app: Exchanging between currencies in the app, and which ones it can exchange to.\n- extra_charge_on_statement: An unexplained extra charge, often a small fixed amount, on the statement.\n- failed_transfer: A transfer failed or did not go through.\n- fiat_currency_support: Which currencies money can be held in or exchanged.\n- get_disposable_virtual_card: Getting a disposable virtual card, and what one is for.\n- get_physical_card: Getting the PIN for a new physical card, or a PIN that has not arrived.\n- getting_spare_card: Getting an additional or second card.\n- getting_virtual_card: Getting a virtual card, or where to find it.\n- lost_or_stolen_card: The card is lost or stolen.\n- lost_or_stolen_phone: The phone with the app on it is lost or stolen.\n- order_physical_card: Ordering a physical card.\n- passcode_forgotten: The app passcode or password is forgotten or not working.\n- pending_card_payment: A card payment is still pending.\n- pending_cash_withdrawal: A cash withdrawal is still showing as pending.\n- pending_top_up: A top-up is still pending.\n- pending_transfer: A transfer is still pending.\n- pin_blocked: The PIN is blocked after too many wrong tries.\n- receiving_money: Receiving money, such as a salary, including in another currency.\n- refund_not_showing_up: A refund the customer expected has not appeared.\n- request_refund: Asking for a refund or to cancel a purchase.\n- reverted_card_payment: A card payment was reverted, reversed or cancelled.\n- supported_cards_and_currencies: Which cards and currencies can be used to add money.\n- terminate_account: Closing or deleting the account.\n- top_up_by_bank_transfer_charge: Fees for topping up by bank transfer.\n- top_up_by_card_charge: Fees for topping up by card.\n- top_up_by_cash_or_cheque: Topping up with cash or a cheque.\n- top_up_failed: A top-up failed or was declined.\n- top_up_limits: The most that can be topped up.\n- top_up_reverted: A top-up went through and was then reverted or cancelled.\n- topping_up_by_card: How to top up with a card, including someone else's.\n- transaction_charged_twice: The same transaction was charged twice.\n- transfer_fee_charged: A fee was charged on a transfer.\n- transfer_into_account: How to transfer money into the account, or between accounts.\n- transfer_not_received_by_recipient: A transfer was sent but the recipient has not received it.\n- transfer_timing: How long transfers take to arrive.\n- unable_to_verify_identity: Identity verification is failing or cannot be completed.\n- verify_my_identity: How to verify identity and what is needed for it.\n- verify_source_of_funds: Showing or checking where the money in the account came from.\n- verify_top_up: Verifying a top-up or the card used for it.\n- virtual_card_not_working: A virtual or disposable virtual card does not work.\n- visa_or_mastercard: Whether the card is, or can be, Visa or Mastercard.\n- why_verify_identity: Why identity verification is required.\n- wrong_amount_of_cash_received: An ATM gave out less cash than was asked for.\n- wrong_exchange_rate_for_cash_withdrawal: A cash withdrawal abroad used the wrong exchange rate.\n\nAnswer with the intent's name exactly as written above.",
+        "started_utc": "2026-11-23T17:10:53Z",
+        "finished_utc": "2026-11-23T18:14:09Z"
+      }
+    },
+    "modernbert": {
+      "summary": {
+        "n": 3080,
+        "right": 2883,
+        "accuracy": 0.936038961038961,
+        "errors": 0,
+        "missing": 0,
+        "not_an_intent": 0,
+        "p50_ms": 12.436207965947688,
+        "p95_ms": 17.885749926790595,
+        "mean_ms": 13.473651006926673,
+        "instance": {
+          "instance": "AWS EC2 mac-m4.metal",
+          "chip": "Apple M4 (10 vCPU, 24 GiB)",
+          "usd_per_hour": 1.23,
+          "source": "https://instances.vantage.sh/aws/ec2/mac-m4.metal",
+          "note": "Same chip as the laptop ModernBERT was timed on. AWS bills Mac hosts per second after a 24-hour minimum, so this per-call figure assumes the machine is kept busy."
+        },
+        "cost_per_10k_usd": 0.04603497427366613,
+        "cost_formula": "mean seconds per call (0.0135) x 10,000 x $1.23/hour (AWS EC2 mac-m4.metal) / 3,600",
+        "has_confidence": true
+      },
+      "meta": {
+        "model": "modernbert",
+        "checkpoint": {
+          "base": "answerdotai/ModernBERT-base",
+          "base_revision": "8949b909ec900327062f0ebf497f51aef5e6f0c8",
+          "recipe": {
+            "epochs": 5,
+            "batch_size": 32,
+            "learning_rate": 5e-05,
+            "weight_decay": 0.01,
+            "warmup_ratio": 0.06,
+            "max_length": 128,
+            "seed": 13
+          },
+          "steps": 1565,
+          "train_examples": 10003,
+          "train_seconds": 1121.9,
+          "device": "mps",
+          "torch": "2.15.0",
+          "final_loss": 0.00285,
+          "trained_at": "2026-11-23T17:41:55+0530"
+        },
+        "device": "mps",
+        "started_utc": "2026-11-23T14:18:50Z",
+        "finished_utc": "2026-11-23T14:19:31Z"
+      }
+    },
+    "fern": {
+      "summary": {
+        "n": 3080,
+        "right": 2789,
+        "accuracy": 0.9055194805194805,
+        "errors": 0,
+        "missing": 0,
+        "not_an_intent": 11,
+        "p50_ms": 260.3314999723807,
+        "p95_ms": 303.31824999302626,
+        "mean_ms": 262.1071454755926,
+        "plan": {
+          "plan": "Fernfly Pro",
+          "usd_per_month": 49,
+          "terms": "unlimited requests, subject to fair use",
+          "source": "https://fernfly.com/pricing",
+          "as_of": "2026-11-24"
+        },
+        "cost_per_10k_usd": null,
+        "cost_formula": "a flat $49 a month (Fernfly Pro, unlimited requests, subject to fair use), whatever the volume",
+        "has_confidence": false
+      },
+      "meta": {
+        "model": "fern",
+        "base": "fern-1500",
+        "entry": {
+          "base": "fern-1500",
+          "records": 10003,
+          "hyperparameters": {
+            "n_epochs": 2,
+            "batch_size": 16,
+            "learning_rate": 0.0002
+          }
+        },
+        "base_name": "Fern Pinna",
+        "started_utc": "2026-11-23T14:19:32Z",
+        "finished_utc": "2026-11-23T14:33:01Z"
+      }
+    }
+  },
+  "routing": {
+    "threshold": 0.9,
+    "modernbert_share": 0.9064935064935065,
+    "modernbert_handles": 2792,
+    "modernbert_right_on_its_share": 2728,
+    "modernbert_accuracy_on_its_share": 0.9770773638968482,
+    "to_llm": 288,
+    "closed": {
+      "llm_right_on_rest": 166,
+      "llm_accuracy_on_rest": 0.5763888888888888,
+      "blended_right": 2894,
+      "blended_accuracy": 0.9396103896103896,
+      "llm_usd_per_10k": 0.10555792207792208,
+      "blended_usd_per_10k": 0.1515928963515882
+    },
+    "open": {
+      "llm_right_on_rest": 156,
+      "llm_accuracy_on_rest": 0.5416666666666666,
+      "blended_right": 2884,
+      "blended_accuracy": 0.9363636363636364,
+      "llm_usd_per_10k": 0.12379112012987012,
+      "blended_usd_per_10k": 0.16982609440353624
+    }
+  }
+}

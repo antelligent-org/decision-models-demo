@@ -1,0 +1,14 @@
+# API keys. Never committed, never opened on screen.
+.env.local
+.venv/
+models/
+__pycache__/
+# Raw answers from each benchmark run; RESULTS.md and results.json are the record.
+runs/
+# The replay cache is rebuilt by the benchmark run and by rehearsals, on the laptop that presents.
+cache/
+.DS_Store
+export/
+# Fern's internal model, job and tool-set ids: kept on the machine that presents, never published.
+fern-models.json
+fern-sizes.json

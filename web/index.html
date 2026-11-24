@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Decision models demo</title>
+<!-- No web fonts and no CDN: the room's network is assumed hostile. The type is
+     the system's own (SF Pro and SF Mono on a Mac). -->
+<script>
+  // Before first paint, so a light-theme page never flashes dark. ?theme=light wins, then the last choice.
+  (function () {
+    var t = (location.search.match(/[?&]theme=(light|dark)/) || [])[1];
+    try { t = t || localStorage.getItem("dm-theme"); } catch (e) {}
+    if (t === "light" || t === "dark") document.documentElement.dataset.theme = t;
+  })();
+</script>
+<link rel="stylesheet" href="app.css">
+</head>
+<body>
+
+<header class="topbar">
+  <div class="brand">
+    <svg class="ant" viewBox="0 0 159.6 95.5" aria-hidden="true"><use href="#ant-mark"/></svg>
+    <span class="brand-name">Decision models <span>demo</span></span>
+  </div>
+  <nav class="tabs" id="tabs" aria-label="Views">
+    <button data-view="task"><span class="k">1</span>The task</button>
+    <button data-view="live"><span class="k">2</span>Live</button>
+    <button data-view="results"><span class="k">3</span>Full test set</button>
+    <button data-view="oos"><span class="k">4</span>Not one of the 77</button>
+    <button data-view="retrain"><span class="k">5</span>Fix a mistake</button>
+    <button data-view="try"><span class="k">6</span>Try it</button>
+  </nav>
+  <div class="status">
+    <span class="pill" id="modePill"><i></i><span>Live</span></span>
+    <button class="icon-btn" id="themeBtn" title="Light or dark (L)" aria-label="Switch light or dark">
+      <svg class="sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.2M12 19.3v2.2M4.6 4.6l1.6 1.6M17.8 17.8l1.6 1.6M2.5 12h2.2M19.3 12h2.2M4.6 19.4l1.6-1.6M17.8 6.2l1.6-1.6"/></svg>
+      <svg class="moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.6A8.2 8.2 0 0 1 9.4 4a8.2 8.2 0 1 0 10.6 10.6Z"/></svg>
+    </button>
+  </div>
+</header>
+
+<main>
+
+  <!-- 1. The task -->
+  <section class="view" id="view-task">
+    <div class="head">
+      <p class="eyebrow">The task</p>
+      <h1>Route a customer support message to one of 77 intents</h1>
+    </div>
+    <div class="route-hero">
+      <blockquote class="quote" id="taskMessage">…</blockquote>
+      <svg class="hero-arrow" viewBox="0 0 48 24" aria-hidden="true"><path d="M2 12h40M33 4l9 8-9 8"/></svg>
+      <div class="target">
+        <span class="chip big" id="taskGold">?</span>
+        <div class="dots" id="dots" aria-hidden="true"></div>
+        <p class="target-note">one of <b>77</b> intents</p>
+      </div>
+    </div>
+    <div class="models" id="taskCols">
+      <article class="model col-llm">
+        <header><span class="dot"></span><div><h3>LLM, prompt only</h3><p class="mono" data-fill="llm-model">…</p></div></header>
+        <dl>
+          <div><dt>Given</dt><dd>The 77 intents, one line each, as an enum it must pick from</dd></div>
+          <div><dt>Examples</dt><dd class="num">0</dd></div>
+          <div><dt>Runs on</dt><dd data-fill="llm-host">A hosted API</dd></div>
+        </dl>
+      </article>
+      <article class="model col-modernbert">
+        <header><span class="dot"></span><div><h3>ModernBERT, fine-tuned</h3><p class="mono">answerdotai/ModernBERT-base · 149M</p></div></header>
+        <dl>
+          <div><dt>Given</dt><dd>Labelled messages; returns a probability for every intent</dd></div>
+          <div><dt>Examples</dt><dd class="num" data-fill="train-count">10,003</dd></div>
+          <div><dt>Runs on</dt><dd>This laptop (Apple M4)</dd></div>
+        </dl>
+      </article>
+      <article class="model col-fern">
+        <header><span class="dot"></span><div><h3>Fern, fine-tuned</h3><p class="mono" data-fill="fern-model">…</p></div></header>
+        <dl>
+          <div><dt>Given</dt><dd>The same messages, as tool calls: one tool per intent</dd></div>
+          <div><dt>Examples</dt><dd class="num" data-fill="train-count">10,003</dd></div>
+          <div><dt>Runs on</dt><dd>Fern API, one GPU in UK South</dd></div>
+        </dl>
+      </article>
+    </div>
+  </section>
+
+  <!-- 2. Live -->
+  <section class="view" id="view-live">
+    <div class="head row">
+      <div>
+        <p class="eyebrow">Live</p>
+        <h1><span id="liveCount">20</span> test messages, one at a time, to each model</h1>
+      </div>
+      <p class="keys"><kbd>Space</kbd> start <kbd>S</kbd> new set</p>
+    </div>
+    <div class="live" id="liveGrid">
+      <div class="lh msgh">Message</div>
+      <div class="lh col-llm"><span class="dot"></span>LLM<span class="score" id="score-llm"></span></div>
+      <div class="lh col-modernbert"><span class="dot"></span>ModernBERT<span class="score" id="score-modernbert"></span></div>
+      <div class="lh col-fern"><span class="dot"></span>Fern<span class="score" id="score-fern"></span></div>
+    </div>
+    <p class="note">Fern's times include a round trip to the UK and back. ModernBERT's include no network at all: it runs where the app runs.</p>
+  </section>
+
+  <!-- 3. Results -->
+  <section class="view" id="view-results">
+    <div class="head">
+      <p class="eyebrow">Full test set</p>
+      <h1 id="resultsTitle">All 3,080 test messages</h1>
+      <p class="sub" id="resultsStamp"></p>
+    </div>
+    <table class="results" id="resultsTable"></table>
+    <div class="routing" id="routeCard"></div>
+    <p class="note" id="resultsNote"></p>
+  </section>
+
+  <!-- 4. Out of set -->
+  <section class="view" id="view-oos">
+    <div class="head row">
+      <div>
+        <p class="eyebrow">Not one of the 77</p>
+        <h1>A banking request that fits none of the intents</h1>
+      </div>
+      <p class="keys">Type, then <kbd>Enter</kbd> <kbd>Tab</kbd> rehearsed</p>
+    </div>
+    <input class="ask" id="oosInput" autocomplete="off" spellcheck="false" placeholder="Type a customer message…">
+    <div class="answers">
+      <article class="model col-llm"><header><span class="dot"></span><h3>LLM</h3></header><div class="answer" id="oos-llm"></div></article>
+      <article class="model col-modernbert"><header><span class="dot"></span><h3>ModernBERT</h3></header><div class="answer" id="oos-modernbert"></div></article>
+      <article class="model col-fern"><header><span class="dot"></span><h3>Fern</h3></header><div class="answer" id="oos-fern"></div></article>
+    </div>
+    <div class="router" id="router">
+      <div class="router-row">
+        <span class="router-label">Router</span>
+        <div class="meter"><div class="meter-fill" id="meterFill"></div><div class="meter-mark"><span>0.9</span></div></div>
+        <span class="router-verdict" id="routerVerdict">ModernBERT answers above 0.9; anything else goes to the LLM</span>
+      </div>
+      <div class="llm-reply" id="llmReply"></div>
+    </div>
+  </section>
+
+  <!-- 5. Retrain -->
+  <section class="view" id="view-retrain">
+    <div class="head row">
+      <div>
+        <p class="eyebrow">Fix a mistake</p>
+        <h1>A test message ModernBERT got wrong</h1>
+      </div>
+      <p class="keys"><kbd>Enter</kbd> ask ModernBERT <kbd>R</kbd> retrain <kbd>X</kbd> reset</p>
+    </div>
+    <blockquote class="quote" id="rtMessage">…</blockquote>
+    <div class="rt-line">
+      <div class="rt-box" id="rtBefore"><h4>ModernBERT says</h4><div class="answer"></div></div>
+      <div class="rt-box" id="rtGold"><h4>Correct intent</h4><div class="answer"></div></div>
+      <div class="rt-box" id="rtAfter"><h4>After retraining</h4><div class="answer"></div></div>
+    </div>
+    <div class="rt-progress" id="rtProgress">
+      <div class="timer" id="rtTimer">0.0 s</div>
+      <div class="rt-phase" id="rtPhase">Ready</div>
+      <div class="progress"><div class="progress-fill" id="rtBar"></div></div>
+    </div>
+    <div class="rt-summary" id="rtSummary"></div>
+  </section>
+
+  <!-- 6. Try it -->
+  <section class="view" id="view-try">
+    <div class="head">
+      <p class="eyebrow">Try it</p>
+      <h1 class="try-title">Try this on your own data</h1>
+    </div>
+    <p class="try-url mono" id="repoUrl">…</p>
+    <ol class="steps">
+      <li><span class="n">1</span><div>Fine-tune ModernBERT on your labelled tickets<code>bert.py train</code></div></li>
+      <li><span class="n">2</span><div>Score it against an LLM on your test set<code>bench.py run</code></div></li>
+      <li><span class="n">3</span><div>Let the small model answer when it is sure, and hand the rest to the LLM</div></li>
+    </ol>
+    <p class="note" id="tryCredit"></p>
+  </section>
+
+</main>
+
+<footer class="foot">
+  <span id="attribution">Data: Banking77 by PolyAI (Casanueva et al., 2020), CC BY 4.0</span>
+  <span>© 2026 <a href="https://antelligent.org/">antelligent</a></span>
+</footer>
+
+<div class="toast" id="toast"></div>
+
+<script src="antelligent.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

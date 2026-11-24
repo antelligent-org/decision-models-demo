@@ -1,0 +1,127 @@
+{
+  "n": 300,
+  "sample": "300 training messages, random.Random(77).sample",
+  "date": "2026-11-23",
+  "candidates": [
+    {
+      "label": "`claude-haiku-5-5`, thinking off, effort low, intent descriptions",
+      "config": {
+        "provider": "anthropic",
+        "model": "claude-haiku-5-5",
+        "thinking": "disabled",
+        "effort": "low",
+        "descriptions": true
+      },
+      "n": 300,
+      "right": 243,
+      "errors": 0,
+      "p50_ms": 1017,
+      "p95_ms": 1588,
+      "usd_per_10k": 0.4482,
+      "chosen": false
+    },
+    {
+      "label": "`claude-haiku-5-5`, thinking off, effort low, intent names only",
+      "config": {
+        "provider": "anthropic",
+        "model": "claude-haiku-5-5",
+        "thinking": "disabled",
+        "effort": "low",
+        "descriptions": false
+      },
+      "n": 300,
+      "right": 225,
+      "errors": 0,
+      "p50_ms": 969,
+      "p95_ms": 1667,
+      "usd_per_10k": 0.3244,
+      "chosen": false
+    },
+    {
+      "label": "`claude-haiku-5-5`, thinking on, effort low, intent descriptions",
+      "config": {
+        "provider": "anthropic",
+        "model": "claude-haiku-5-5",
+        "thinking": "adaptive",
+        "effort": "low",
+        "descriptions": true
+      },
+      "n": 300,
+      "right": 246,
+      "errors": 0,
+      "p50_ms": 970,
+      "p95_ms": 1894,
+      "usd_per_10k": 0.5821,
+      "chosen": false
+    },
+    {
+      "label": "`claude-haiku-5-5`, thinking on, effort medium, intent descriptions",
+      "config": {
+        "provider": "anthropic",
+        "model": "claude-haiku-5-5",
+        "thinking": "adaptive",
+        "effort": "medium",
+        "descriptions": true
+      },
+      "n": 300,
+      "right": 249,
+      "errors": 0,
+      "p50_ms": 1052,
+      "p95_ms": 1930,
+      "usd_per_10k": 0.7297,
+      "chosen": false
+    },
+    {
+      "label": "`claude-haiku-5-5`, thinking on, effort high, intent descriptions",
+      "config": {
+        "provider": "anthropic",
+        "model": "claude-haiku-5-5",
+        "thinking": "adaptive",
+        "effort": "high",
+        "descriptions": true
+      },
+      "n": 300,
+      "right": 253,
+      "errors": 0,
+      "p50_ms": 1207,
+      "p95_ms": 2111,
+      "usd_per_10k": 0.8546,
+      "chosen": true
+    },
+    {
+      "label": "`claude-haiku-5-5`, thinking on, effort xhigh, intent descriptions",
+      "config": {
+        "provider": "anthropic",
+        "model": "claude-haiku-5-5",
+        "thinking": "adaptive",
+        "effort": "xhigh",
+        "descriptions": true
+      },
+      "n": 300,
+      "right": 252,
+      "errors": 0,
+      "p50_ms": 1208,
+      "p95_ms": 2284,
+      "usd_per_10k": 1.0114,
+      "chosen": false
+    },
+    {
+      "label": "`claude-haiku-5-5`, thinking on, effort max, intent descriptions (4 errors)",
+      "config": {
+        "provider": "anthropic",
+        "model": "claude-haiku-5-5",
+        "thinking": "adaptive",
+        "effort": "max",
+        "descriptions": true
+      },
+      "n": 300,
+      "right": 253,
+      "errors": 4,
+      "p50_ms": 1612,
+      "p95_ms": 6839,
+      "usd_per_10k": 2.4086,
+      "chosen": false
+    }
+  ],
+  "why": "Chosen for accuracy: the best measured, tied with effort max, which was slower, dearer and failed 4 calls. The differences between the thinking-on setups are within sampling noise on 300 messages; the intent descriptions are not (+18)."
+}
