@@ -5,7 +5,10 @@ fern.py: the Fern column, a Fern model fine-tuned on the same 10,003 messages.
     python3 fern.py export                    # the two files a Fernfly project needs, in export/
     python3 fern.py ask "my card hasn't arrived" [--base fern-1500]
 
-With Fern API access (FERN_BASE_URL and FERN_API_KEY), it can also train directly:
+`ask`, the page and the benchmark call FERN_BASE_URL with FERN_API_KEY, both in
+.env.local. For a model trained in Fernfly, those are the project's
+OpenAI-compatible base URL (https://fernfly.com/api/p/<project-id>/v1) and its
+API key. With direct Fern API access, it can also train:
 
     python3 fern.py probe                     # register the tools and upload 5 lines, to check the format
     python3 fern.py train --base fern-1500    # or fern-bud-1.0 (Fern Bud), fern-160m (Fern Pinnule)
@@ -23,10 +26,9 @@ The steps are the Fern API's own: register a tool set, upload JSONL, queue a
 job, poll. The hyperparameters are Fernfly's defaults for 10,003 pairs: what a
 customer would get without touching the advanced settings.
 
-Trained models are recorded in fern-models.json, which git ignores.
-The address is FERN_BASE_URL and the key FERN_API_KEY, both in .env.local (see
-common.secret).
-Standard library only.
+Models trained here are recorded in fern-models.json, which git ignores. Without
+it, the client asks for the model "fernfly", and a Fernfly project's newest
+deployment answers whatever the name. Standard library only.
 """
 
 import argparse
@@ -57,8 +59,8 @@ def token():
 
 
 def base_url():
-    """The Fern API's address. Not in this repository: set FERN_BASE_URL in .env.local."""
-    return common.secret("Fern API address", "FERN_BASE_URL").rstrip("/")
+    """The address from FERN_BASE_URL in .env.local, without a trailing /v1: the client adds it."""
+    return common.secret("Fern API address", "FERN_BASE_URL").rstrip("/").removesuffix("/v1")
 
 
 def request(method, path, body=None, content_type="application/json"):
@@ -140,9 +142,8 @@ class Client:
     """Asks one fine-tuned Fern model, over one kept-alive connection."""
 
     def __init__(self, base="fern-bud-1.0", key=None):
-        entry = models().get(key or f"banking77@{base}")
-        if not entry:
-            sys.exit(f"no trained model for {base} in {os.path.basename(MODELS_FILE)}: run fern.py train --base {base}")
+        # A Fernfly project serves its newest deployment whatever the model is called.
+        entry = models().get(key or f"banking77@{base}") or {"model": "fernfly", "base": base}
         self.entry, self.base = entry, entry["base"]
         self.http = common.Keepalive(base_url() + "/v1",
                                      {"Authorization": f"Bearer {token()}", "User-Agent": UA}, timeout=60)
@@ -150,7 +151,7 @@ class Client:
 
     def body(self, text):
         body = {"model": self.entry["model"], "messages": [{"role": "user", "content": text}], "temperature": 0}
-        if self.base != "fern-1500":  # Pinna learns its tools in training and is sent none
+        if self.base != "fern-1500" and self.entry.get("tool_set_id"):  # Pinna learns its tools in training
             body["tool_set_id"] = self.entry["tool_set_id"]
         return body
 

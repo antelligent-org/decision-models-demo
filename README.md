@@ -96,17 +96,26 @@ training messages with Fernfly's default settings. To make the same model in
    .venv/bin/python fern.py export
    ```
 
-2. In Fernfly, create a project with **OpenAPI / Swagger** as the source and
-   upload `export/banking77.openapi.json`: one tool per intent, 77 in all, with
-   no parameters.
-3. Keep all 77 tools selected.
-4. At the generate step, choose **Import JSONL** and upload
-   `export/banking77.pairs.jsonl` instead of generating: the 10,003 training
-   messages, each paired with its intent's tool.
-5. At the train step, choose **Fern Pinna** and keep the default settings.
-6. Train, then deploy.
-7. On the project's page, turn **AI fallback** off, so a message the model
+2. In Fernfly, choose **New project**, then **From scratch**, with
+   **OpenAPI / Swagger** as the source, and upload
+   `export/banking77.openapi.json`. It extracts 77 tools, one per intent, with
+   no parameters; keep them all.
+3. On the Generate step, choose **Import JSONL** and pick
+   `export/banking77.pairs.jsonl`: the 10,003 training messages, each paired
+   with its intent's tool.
+4. On the Train step, open **Advanced mode**, choose **Fern Pinna (1.5B)**, keep
+   the other settings, and start training.
+5. Fernfly deploys the model when training finishes and shows the project's API
+   key once. Save it, and copy the project id from the endpoint URL.
+6. On the project's page, turn **AI fallback** off, so a message the model
    cannot route shows as a miss rather than being answered by another model.
+7. Add the project's endpoint and key to `.env.local`, then restart
+   `serve.py`:
+
+   ```
+   FERN_BASE_URL=https://fernfly.com/api/p/<project-id>/v1
+   FERN_API_KEY=<your project API key>
+   ```
 
 ### Run the benchmark
 
@@ -118,7 +127,8 @@ each, then about 290 more for the router. It writes `RESULTS.md`,
 .venv/bin/python bench.py run
 ```
 
-If the network drops part-way, resume the same run rather than start again:
+Fern's share is 3,080 requests, more than the 1,000 a day of Fernfly's free
+plan. If the network drops part-way, resume the same run rather than start again:
 `bench.py run --resume runs/<timestamp>`. `--only llm`, `--only modernbert`
 or `--only fern` runs one model; `--n 50` is a smoke test that writes no
 report.
